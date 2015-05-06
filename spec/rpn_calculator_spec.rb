@@ -5,7 +5,8 @@ describe RpnCalculator do
     expect(RpnCalculator::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'boots prompt and quits without error' do
+    allow(STDIN).to receive(:gets).and_return("q")
+    expect(RpnCalculator.boot).to be_truthy
   end
 end
