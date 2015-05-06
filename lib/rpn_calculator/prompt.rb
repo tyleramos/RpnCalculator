@@ -24,12 +24,16 @@ Happy Calculating!\n\n
 
     def listen_for_input
       loop do
-        $stdout.write '> '
-        input = $stdin.gets.chomp
-        return if input.to_s == 'q'
+        begin
+          $stdout.write '> '
+          input = $stdin.gets.chomp
+          return if input.to_s == 'q'
 
-        calculator.enter(input)
-        $stdout.write "#{calculator.output}\n"
+          calculator.enter(input)
+          $stdout.write "#{calculator.output}\n"
+        rescue InputError => e
+          $stdout.write "#{e.message}\n"
+        end
       end
     end
 

@@ -8,10 +8,17 @@ module RpnCalculator
       @stack = []
     end
 
-    def enter(input)
-      @stack << input
+    # Adds input to the calculator stack in memory
+    def enter(raw_input)
+      input = Input.new(raw_input)
+      if input.valid?
+        @stack << input
+      else
+        raise InputError, "Input must either be a valid number or operator."
+      end
     end
 
+    # Evaluate the stack and return the result
     def output
       @stack.pop
     end
@@ -20,4 +27,5 @@ module RpnCalculator
 
   end
 
+  class InputError < StandardError; end
 end
