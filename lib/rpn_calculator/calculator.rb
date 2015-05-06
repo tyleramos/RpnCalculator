@@ -36,6 +36,7 @@ module RpnCalculator
       end
     end
 
+    # Performs operation using last two values in stack and the given operator, and returns result as Input
     def perform_operation(operator)
       operands = stack.last(2)
       if valid_operation?(operator, operands)
@@ -46,6 +47,7 @@ module RpnCalculator
       end
     end
 
+    # raises error if operands or operator not valid, otherwise return true
     def valid_operation?(operator, operands)
       unless operands.size == 2 && operands.all?(&:numeric?)
         raise InputError, "Must have at least two numeric values in the stack to perform an operation."
