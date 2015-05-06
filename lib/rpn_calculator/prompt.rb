@@ -1,25 +1,25 @@
 module RpnCalculator
 
-  class Calculator
+  class Prompt
 
     def initialize
-      start_prompt
+      start
     end
 
     private
 
-    def start_prompt
+    def start
       $stdout.write <<-PROMPT
 \nReverse Polish Notation Calculator\n
 You can start by typing numbers (including negative and decimals) and operators.
 Quit at any time with the `q` command.
 Happy Calculating!\n\n
       PROMPT
-      process_inputs
+      listen_for_input
       $stdout.write "\nGoodbye!\n"
     end
 
-    def process_inputs
+    def listen_for_input
       loop do
         $stdout.write '> '
         input = STDIN.gets.chomp

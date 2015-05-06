@@ -1,10 +1,10 @@
 require_relative 'rpn_calculator/version'
-require_relative 'rpn_calculator/calculator'
+require_relative 'rpn_calculator/prompt'
 
 module RpnCalculator
 
   def self.boot
-    Calculator.new
+    Prompt.new
   end
 
 end
