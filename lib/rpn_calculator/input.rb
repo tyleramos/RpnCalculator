@@ -22,9 +22,9 @@ module RpnCalculator
 
     private
 
-    # Returns an array of strings for each instance method that a Float responds to
+    # Returns an array of strings for each valid operator
     def valid_operators
-      Float.instance_methods(false).map(&:to_s)
+      %w(+ - * / % **)
     end
 
   end
