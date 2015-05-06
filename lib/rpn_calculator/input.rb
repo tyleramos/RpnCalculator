@@ -20,6 +20,10 @@ module RpnCalculator
       valid_operators.include?(self)
     end
 
+    def division?
+      self == "/"
+    end
+
     private
 
     # Returns an array of strings for each valid operator

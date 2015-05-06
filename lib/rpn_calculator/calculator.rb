@@ -30,11 +30,31 @@ module RpnCalculator
     # If input is an operator, perform operation on given arguments
     def evaluate(input)
       if input.operator?
-        operands = stack.pop(2).map(&:to_f)
-        operands.first.send(input, operands.last)
+        perform_operation(input)
       else
         input
       end
+    end
+
+    def perform_operation(operator)
+      operands = stack.last(2)
+      if valid_operation?(operator, operands)
+        operands = stack.pop(2).map(&:to_f)
+        new_value = operands[0].send(operator, operands[1]).to_s
+
+        Input.new(new_value)
+      end
+    end
+
+    def valid_operation?(operator, operands)
+      unless operands.size == 2 && operands.all?(&:numeric?)
+        raise InputError, "Must have at least two numeric values in the stack to perform an operation."
+      end
+      if operator.division? && operands.last.to_f.zero?
+        raise InputError, "Cannot divide by zero."
+      end
+
+      true
     end
 
   end
