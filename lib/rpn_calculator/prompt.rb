@@ -2,7 +2,10 @@ module RpnCalculator
 
   class Prompt
 
+    attr_accessor :calculator
+
     def initialize
+      @calculator = Calculator.new
       start
     end
 
@@ -22,10 +25,11 @@ Happy Calculating!\n\n
     def listen_for_input
       loop do
         $stdout.write '> '
-        input = STDIN.gets.chomp
+        input = $stdin.gets.chomp
         return if input.to_s == 'q'
 
-        $stdout.write "#{input}\n"
+        calculator.enter(input)
+        $stdout.write "#{calculator.output}\n"
       end
     end
 
